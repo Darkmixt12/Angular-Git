@@ -1,5 +1,6 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Character } from '../../interfaces/character.interface';
+import { v4 } from 'uuid';
 
 @Component({
   selector: 'app-dbz-list',
@@ -9,12 +10,18 @@ import { Character } from '../../interfaces/character.interface';
 export class DbzListComponent {
   @Input() //! para poder recibir propiedades de un componente padre se debe usar este input
   public characterList: Character[] = [{
+    id: v4(),
     name: 'Trunks',
     power: 500
   }]
 
-onDeleteCharacter(id:number):void{
-  console.log(id)
+  @Output()
+  public onDelete: EventEmitter<string> = new EventEmitter();
+
+onDeleteCharacterList(id?:string):void{
+    if(!id) return;
+  this.onDelete.emit(id);
 }
 
 }
+  
