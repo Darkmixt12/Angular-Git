@@ -12,4 +12,9 @@ export class DbzListComponent {
     name: 'Trunks',
     power: 500
   }]
+
+onDeleteCharacter(id:number):void{
+  console.log(id)
+}
+
 }
